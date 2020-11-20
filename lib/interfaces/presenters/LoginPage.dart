@@ -15,7 +15,7 @@ class LoginPage extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
-              onPressed: () {},
+              onPressed: _signinWithFacebook,
             ),
 
             // google のロゴ付きボタン refs: https://medium.com/flutter-community/flutter-implementing-google-sign-in-71888bca24ed
@@ -24,7 +24,7 @@ class LoginPage extends StatelessWidget {
               shape: OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(10)),
               ),
-              onPressed: () {},
+              onPressed: _signinWithGoogle,
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
                 child: Row(
@@ -49,6 +49,13 @@ class LoginPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  _signinWithFacebook() {
+    debugPrint('pressed facebook');
+  }
+  _signinWithGoogle() {
+    debugPrint('pressed google');
   }
 
 }
