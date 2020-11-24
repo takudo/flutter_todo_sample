@@ -1,8 +1,13 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 
 class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Firebase.initializeApp();
+
     return Scaffold( //天地中央 refs: https://qiita.com/sekitaka_1214/items/03255fd9f61685503af3
       body: Center(
         child: Column(
@@ -51,9 +56,30 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  _signinWithFacebook() {
-    debugPrint('pressed facebook');
+  _signinWithFacebook() async {
+
+    final _auth = FirebaseAuth.instance;
+    final facebookSignIn = new FacebookLogin();
+    final facebookLogin = FacebookLogin();
+
+    // Facebookの認証画面が開く
+    final facebookLoginResult = await facebookLogin.logIn((['email']));
+
+    // Firebaseのユーザー情報と連携
+    final credential = FacebookAuthProvider.credential(
+      facebookLoginResult.accessToken.token,
+    );
+
+    // Firebaseのユーザー情報を取得
+    final user = (await _auth.signInWithCredential(credential)).user;
+
+    assert(!user.isAnonymous);
+    assert(await user.getIdToken() != null);
+
+    final currentUser = await _auth.currentUser;
+    assert(user.uid == currentUser.uid);
   }
+
   _signinWithGoogle() {
     debugPrint('pressed google');
   }
