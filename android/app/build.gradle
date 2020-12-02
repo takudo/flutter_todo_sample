@@ -44,6 +44,7 @@ android {
         targetSdkVersion 29
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        multiDexEnabled true // https://qiita.com/tetsukick/items/25d42ce3281291e5946a
     }
 
     buildTypes {
