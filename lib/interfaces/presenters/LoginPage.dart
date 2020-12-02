@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class LoginPage extends StatelessWidget {
   @override
@@ -80,8 +81,18 @@ class LoginPage extends StatelessWidget {
     assert(user.uid == currentUser.uid);
   }
 
-  _signinWithGoogle() {
-    debugPrint('pressed google');
+  _signinWithGoogle() async {
+
+    final googleSignin = GoogleSignIn(
+      scopes: <String>[
+        'email',
+        'profile' // 参考: スコープ一覧 https://developers.google.com/identity/protocols/oauth2/scopes#google-sign-in
+     ],
+    );
+    final account = await googleSignin.signIn();
+
+    debugPrint(account.toString());
+
   }
 
 }
