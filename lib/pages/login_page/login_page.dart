@@ -2,9 +2,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_todo_sample/pages/login_page/login_button.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends HookWidget {
+
   @override
   Widget build(BuildContext context) {
     Firebase.initializeApp();
@@ -23,34 +25,7 @@ class LoginPage extends StatelessWidget {
               ),
               onPressed: _signinWithFacebook,
             ),
-
-            // google のロゴ付きボタン refs: https://medium.com/flutter-community/flutter-implementing-google-sign-in-71888bca24ed
-            RaisedButton(
-              color: Colors.white,
-              shape: OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(10)),
-              ),
-              onPressed: _signinWithGoogle,
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Image(image: AssetImage("assets/google_logo.png"), height: 16.0),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10),
-                      child: Text(
-                        'Sign in with Google',
-                        style: TextStyle(
-                          color: Colors.grey,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
+            LoginButton(),
           ],
         ),
       ),
@@ -81,18 +56,6 @@ class LoginPage extends StatelessWidget {
     assert(user.uid == currentUser.uid);
   }
 
-  _signinWithGoogle() async {
 
-    final googleSignin = GoogleSignIn(
-      scopes: <String>[
-        'email',
-        'profile' // 参考: スコープ一覧 https://developers.google.com/identity/protocols/oauth2/scopes#google-sign-in
-     ],
-    );
-    final account = await googleSignin.signIn();
-
-    debugPrint(account.toString());
-
-  }
 
 }
