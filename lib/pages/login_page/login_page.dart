@@ -3,13 +3,22 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_todo_sample/pages/login_page/login_button.dart';
+import 'package:flutter_todo_sample/controllers/google_login_controller.dart';
+import 'package:flutter_todo_sample/pages/login_page/google_login_button.dart';
+import 'package:flutter_todo_sample/pages/login_page/google_logout_button.dart';
+import 'package:hooks_riverpod/all.dart';
 
 class LoginPage extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
     Firebase.initializeApp();
+
+    // google button setup
+    context.read(googleLoginProvider).init();
+    final googleButton = useProvider(
+        googleLoginProvider.state.select((s) => s.isLogin() ? GoogleLogoutButton() : GoogleLoginButton())
+    );
 
     return Scaffold( //天地中央 refs: https://qiita.com/sekitaka_1214/items/03255fd9f61685503af3
       body: Center(
@@ -25,7 +34,7 @@ class LoginPage extends HookWidget {
               ),
               onPressed: _signinWithFacebook,
             ),
-            LoginButton(),
+            googleButton,
           ],
         ),
       ),

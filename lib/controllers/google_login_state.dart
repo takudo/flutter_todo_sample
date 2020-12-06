@@ -1,9 +1,9 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-part 'login_state.freezed.dart';
+part 'google_login_state.freezed.dart';
 
 @freezed
-abstract class LoginState with _$LoginState{
+abstract class GoogleLoginState with _$GoogleLoginState{
 
   // factory LoginState({GoogleSignInAccount account}) {
   //   final googleSignin = GoogleSignIn(
@@ -15,8 +15,8 @@ abstract class LoginState with _$LoginState{
   //   googleSignin.signInSilently().then((a) => LoginState(account: a));
   //   return _LoginState;
   // }
-  LoginState._(); //private constructor
-  factory LoginState({GoogleSignInAccount account}) = _LoginState;
+  GoogleLoginState._(); //private constructor
+  factory GoogleLoginState({GoogleSignInAccount account}) = _GoogleLoginState;
 
 // GoogleLoginState._(this.account);
 
