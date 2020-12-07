@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_todo_sample/controllers/facebook_login_controller/facebook_login_controller.dart';
+import 'package:flutter_todo_sample/controllers/login_controller/login_controller.dart';
 import 'package:hooks_riverpod/all.dart';
 
 class FacebookLoginButton extends HookWidget {
@@ -16,7 +16,7 @@ class FacebookLoginButton extends HookWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
-        onPressed: context.read(facebookLoginProvider).login,
+        onPressed: context.read(loginProvider).facebookLogin,
       );
   }
 }
