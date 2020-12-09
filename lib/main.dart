@@ -39,13 +39,11 @@ class MyApp extends HookWidget {
             ),
           );
         }
-        // // TODO ローディング表示
-        // return MaterialApp(
-        //   home: ,
-        // );
+        // TODO ローディング表示
+        return MaterialApp(
+          home: Container(),
+        );
       }
     );
-      
-      
   }
 }
