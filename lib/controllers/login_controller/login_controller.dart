@@ -30,8 +30,7 @@ class LoginController extends StateNotifier<LoginState> {
     _firebaseAuth = FirebaseAuth.instance;
 
     final googleAccount = await _initGoogle();
-    // final facebookAccount = await _initFacebook();
-    final facebookAccount = null;
+    final facebookAccount = await _initFacebook();
 
     state = state.copyWith(
       googleAccount: googleAccount,
@@ -61,47 +60,47 @@ class LoginController extends StateNotifier<LoginState> {
   }
 
   Future<User> _initFacebook() async {
-    // var facebookAccount;
-    //
-    // if((await facebookAuth.isLoggedIn) && state.facebookAccount == null) {
-    //
-    //   final accessToken = await facebookAuth.currentAccessToken;
-    //   final credential = FacebookAuthProvider.credential(
-    //     accessToken.token,
-    //   );
-    //
-    //   // Firebaseのユーザー情報を取得
-    //   final user = (await firebaseAuth.signInWithCredential(credential)).user;
-    //
-    //   assert(!user.isAnonymous);
-    //   assert(await user.getIdToken() != null);
-    //
-    //   facebookAccount = await firebaseAuth.currentUser;
-    //   assert(user.uid == facebookAccount.uid);
-    // }
-    // return facebookAccount;
+    var facebookAccount;
+
+    if((await _facebookAuth.isLoggedIn) && state.facebookAccount == null) {
+
+      final accessToken = await _facebookAuth.currentAccessToken;
+      final credential = FacebookAuthProvider.credential(
+        accessToken.token,
+      );
+
+      // Firebaseのユーザー情報を取得
+      final user = (await _firebaseAuth.signInWithCredential(credential)).user;
+
+      assert(!user.isAnonymous);
+      assert(await user.getIdToken() != null);
+
+      facebookAccount = await _firebaseAuth.currentUser;
+      assert(user.uid == facebookAccount.uid);
+    }
+    return facebookAccount;
   }
 
   facebookLogin() async {
 
-    // // Facebookの認証画面が開く
-    // final facebookLoginResult = await facebookAuth.logIn((['email']));
-    //
-    // // Firebaseのユーザー情報と連携
-    // final credential = FacebookAuthProvider.credential(
-    //   facebookLoginResult.accessToken.token,
-    // );
-    //
-    // // Firebaseのユーザー情報を取得
-    // final user = (await firebaseAuth.signInWithCredential(credential)).user;
-    //
-    // assert(!user.isAnonymous);
-    // assert(await user.getIdToken() != null);
-    //
-    // final currentUser = await firebaseAuth.currentUser;
-    // assert(user.uid == currentUser.uid);
-    //
-    // state = state.copyWith(facebookAccount: currentUser);
+    // Facebookの認証画面が開く
+    final facebookLoginResult = await _facebookAuth.logIn((['email']));
+
+    // Firebaseのユーザー情報と連携
+    final credential = FacebookAuthProvider.credential(
+      facebookLoginResult.accessToken.token,
+    );
+
+    // Firebaseのユーザー情報を取得
+    final user = (await _firebaseAuth.signInWithCredential(credential)).user;
+
+    assert(!user.isAnonymous);
+    assert(await user.getIdToken() != null);
+
+    final currentUser = await _firebaseAuth.currentUser;
+    assert(user.uid == currentUser.uid);
+
+    state = state.copyWith(facebookAccount: currentUser);
   }
 
   facebookLogout() async {

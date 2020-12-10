@@ -13,20 +13,6 @@ class LoginPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
 
-    // Navigator.of(context).pushReplacementNamed("/tasks");
-
-    // final login = useProvider(loginProvider.state.select((s) => s.isLogin));
-
-    // final login = context.read(loginProvider).state.isLogin;
-    // if(login) {
-    //   Navigator.push(
-    //       context,
-    //       MaterialPageRoute(builder: (context) => TasksPage(),
-    //       )
-    //   );
-    //   return Container();
-    // }
-
     // loading
     final loginInitialized = useProvider(
         loginProvider.state.select((s) => s.initialized)
