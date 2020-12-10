@@ -85,7 +85,7 @@ class LoginController extends StateNotifier<LoginState> {
 
   facebookLogout() async {
     await facebookAuth.logOut();
-    state = null;
+    state = state.copyWith(facebookAccount: null);
   }
 
 
