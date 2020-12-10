@@ -13,7 +13,8 @@ abstract class LoginState with _$LoginState{
     @Default(false) bool initialized
   }) = _LoginState;
 
-  bool isGoogleLogin() => googleAccount != null;
-  bool isFacebookLogin() => facebookAccount != null;
+  bool get isLogin => isGoogleLogin || isFacebookLogin;
+  bool get isGoogleLogin => googleAccount != null;
+  bool get isFacebookLogin => facebookAccount != null;
 
 }
