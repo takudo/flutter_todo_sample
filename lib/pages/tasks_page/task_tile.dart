@@ -14,7 +14,7 @@ class TaskTile extends HookWidget {
           border: new Border(bottom: BorderSide(width: 0.5, color: Colors.grey))
       ),
       child:ListTile(
-        leading: Icon(Icons.warning_amber_rounded),
+        leading: Icon(Icons.radio_button_off),
         title: Text(
           title,
           style: TextStyle(

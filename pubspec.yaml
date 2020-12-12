@@ -39,6 +39,9 @@ dependencies:
   # for use copyWith
   freezed_annotation:
 
+  # firestore
+  cloud_firestore: ^0.14.4
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

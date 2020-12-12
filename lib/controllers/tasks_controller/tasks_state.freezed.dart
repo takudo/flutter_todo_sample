@@ -14,7 +14,7 @@ class _$TasksStateTearOff {
   const _$TasksStateTearOff();
 
 // ignore: unused_element
-  _TasksState call({List<String> tasks}) {
+  _TasksState call({List<Task> tasks}) {
     return _TasksState(
       tasks: tasks,
     );
@@ -27,7 +27,7 @@ const $TasksState = _$TasksStateTearOff();
 
 /// @nodoc
 mixin _$TasksState {
-  List<String> get tasks;
+  List<Task> get tasks;
 
   $TasksStateCopyWith<TasksState> get copyWith;
 }
@@ -37,7 +37,7 @@ abstract class $TasksStateCopyWith<$Res> {
   factory $TasksStateCopyWith(
           TasksState value, $Res Function(TasksState) then) =
       _$TasksStateCopyWithImpl<$Res>;
-  $Res call({List<String> tasks});
+  $Res call({List<Task> tasks});
 }
 
 /// @nodoc
@@ -53,7 +53,7 @@ class _$TasksStateCopyWithImpl<$Res> implements $TasksStateCopyWith<$Res> {
     Object tasks = freezed,
   }) {
     return _then(_value.copyWith(
-      tasks: tasks == freezed ? _value.tasks : tasks as List<String>,
+      tasks: tasks == freezed ? _value.tasks : tasks as List<Task>,
     ));
   }
 }
@@ -64,7 +64,7 @@ abstract class _$TasksStateCopyWith<$Res> implements $TasksStateCopyWith<$Res> {
           _TasksState value, $Res Function(_TasksState) then) =
       __$TasksStateCopyWithImpl<$Res>;
   @override
-  $Res call({List<String> tasks});
+  $Res call({List<Task> tasks});
 }
 
 /// @nodoc
@@ -82,7 +82,7 @@ class __$TasksStateCopyWithImpl<$Res> extends _$TasksStateCopyWithImpl<$Res>
     Object tasks = freezed,
   }) {
     return _then(_TasksState(
-      tasks: tasks == freezed ? _value.tasks : tasks as List<String>,
+      tasks: tasks == freezed ? _value.tasks : tasks as List<Task>,
     ));
   }
 }
@@ -92,7 +92,7 @@ class _$_TasksState extends _TasksState {
   _$_TasksState({this.tasks}) : super._();
 
   @override
-  final List<String> tasks;
+  final List<Task> tasks;
 
   @override
   String toString() {
@@ -118,10 +118,10 @@ class _$_TasksState extends _TasksState {
 
 abstract class _TasksState extends TasksState {
   _TasksState._() : super._();
-  factory _TasksState({List<String> tasks}) = _$_TasksState;
+  factory _TasksState({List<Task> tasks}) = _$_TasksState;
 
   @override
-  List<String> get tasks;
+  List<Task> get tasks;
   @override
   _$TasksStateCopyWith<_TasksState> get copyWith;
 }

@@ -19,7 +19,7 @@ class TasksPage extends HookWidget {
       body: Center(
         child:
           ListView(
-            children: (tasks.map((e) => TaskTile(e))).toList(),
+            children: (tasks.map((e) => TaskTile(e.title))).toList(),
           )
       ),
       floatingActionButton: FloatingActionButton(

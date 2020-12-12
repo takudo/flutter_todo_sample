@@ -26,6 +26,7 @@ class LoginController extends StateNotifier<LoginState> {
       return;
     }
 
+    // FIXME ここで初期化するのがイマイチなので、main.dart のどこかでやるように変えたい
     await Firebase.initializeApp();
     _firebaseAuth = FirebaseAuth.instance;
 

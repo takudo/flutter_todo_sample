@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,12 +10,14 @@ import 'package:loader_overlay/loader_overlay.dart';
 
 import 'controllers/login_controller/login_controller.dart';
 
-void main() => runApp(
+void main() async {
+
+  runApp(
     const ProviderScope(
       child: MyApp(),
     ),
   );
-
+}
 class MyApp extends HookWidget {
   const MyApp({Key key}) : super(key: key);
   @override
@@ -34,12 +38,12 @@ class MyApp extends HookWidget {
         home: TasksPage(),
       );
     } else {
-        return MaterialApp(
-          home: LoaderOverlay(
-              useDefaultLoading: true,
-              child: LoginPage()
-          ),
-        );
+      return MaterialApp(
+        home: LoaderOverlay(
+            useDefaultLoading: true,
+            child: LoginPage()
+        ),
+      );
     }
   }
 }
