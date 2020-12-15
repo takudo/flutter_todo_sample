@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_todo_sample/pages/tasks_page/task_edit_page.dart';
 
 class TaskTile extends HookWidget {
 
@@ -23,7 +24,12 @@ class TaskTile extends HookWidget {
           ),
         ),
         onTap: () {
-          print("onTap called.");
+          // 編集ページにいく
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) {
+              return TaskEditPage();
+            },
+          ));
         }, // タップ
         onLongPress: () {
           print("onLongPress called.");
