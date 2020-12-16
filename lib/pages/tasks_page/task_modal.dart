@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_todo_sample/controllers/tasks_controller/task_controller.dart';
+import 'package:flutter_todo_sample/controllers/tasks_controller/tasks_controller.dart';
 import 'package:hooks_riverpod/all.dart';
 
 class TaskModal extends HookWidget {
