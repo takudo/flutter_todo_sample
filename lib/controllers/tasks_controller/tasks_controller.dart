@@ -9,24 +9,28 @@ class TasksController extends StateNotifier<TasksState> {
   TasksController() : super(TasksState(tasks: [])) {
 
     final isProduction = bool.fromEnvironment('dart.vm.product');
-    // await Firebase.initializeApp();
     if (!isProduction) {
       FirebaseFirestore.instance.settings = Settings(
           host: 'localhost:8080', sslEnabled: false, persistenceEnabled: false);
     }
     loadTask();
   }
-  final taskCollection = FirebaseFirestore.instance.collection('tasks');
+  final tasksRef = FirebaseFirestore.instance.collection('tasks');
 
   loadTask() async {
-    final result = await taskCollection.get();
-    final tasks = result.docs.map((d) => Task(title: d.get('title'))).toList();
+    final result = await tasksRef.get();
+    final tasks = result.docs.map((d) => Task(id: d.id, title: d.get('title'))).toList();
     state = state.copyWith(tasks: tasks);
   }
 
   addTask(String title) async {
-    await taskCollection.add({'title': title});
+    await tasksRef.add({'title': title});
     loadTask();
   }
 
+  updateTask(Task task) async {
+    final taskRef = tasksRef.doc(task.id);
+    await taskRef.update({'title': task.title});
+    loadTask();
+  }
 }

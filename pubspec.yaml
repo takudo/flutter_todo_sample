@@ -42,6 +42,13 @@ dependencies:
   # firestore
   cloud_firestore: ^0.14.4
 
+  # モーダル
+  modal_bottom_sheet: ^1.0.0+1
+
+  # 日本語サポート
+  flutter_localizations:
+    sdk: flutter
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

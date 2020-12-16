@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_todo_sample/entities/Task.dart';
+import 'package:flutter_todo_sample/pages/tasks_page/task_edit_page.dart';
 
 class TaskTile extends HookWidget {
 
-  final String title;
-  TaskTile(this.title);
+  final Task task;
+  TaskTile(this.task);
 
   @override
   Widget build(BuildContext context) {
@@ -16,18 +18,20 @@ class TaskTile extends HookWidget {
       child:ListTile(
         leading: Icon(Icons.radio_button_off),
         title: Text(
-          title,
+          task.title,
           style: TextStyle(
               color:Colors.black,
               fontSize: 18.0
           ),
         ),
         onTap: () {
-          print("onTap called.");
+          // 編集ページにいく
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) {
+              return TaskEditPage(task: task,);
+            },
+          ));
         }, // タップ
-        onLongPress: () {
-          print("onLongPress called.");
-        }, // 長押し
       ),
     );
   }
