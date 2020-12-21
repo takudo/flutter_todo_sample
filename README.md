@@ -16,7 +16,7 @@ flutter を用いて、以下の実装を試したサンプルアプリケーシ
 - [ ] タスクの並び替え
 
 
-## ローカル環境の設定
+## 開発環境の設定
 
 ### Firebase の Authentication
 
@@ -24,8 +24,16 @@ flutter を用いて、以下の実装を試したサンプルアプリケーシ
     - android: `google-services.json` を `android/app/` 配下に配置
     ![android_setting](./README/firebase_setting_android.jpg)
     - ios: `google-services.json` を `android/app/` 配下に配置
-    ![android_setting](./README/firebase_setting_ios.jpg)
+    ![ios_setting](./README/firebase_setting_ios.jpg)
 
+- ログインプロバイダの、 Facebook と Google の有効化
+  - 設定
+    ![auth_provider](./README/firebase_setting_auth_providers.jpg)
+  - マルチログインの有効化
+    ![auth_multi_login](./README/firebase_setting_auth_multi_account.jpg)
+
+
+    
 
 ### Firestore 
 

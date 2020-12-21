@@ -1,18 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_todo_sample/controllers/tasks_controller/tasks_state.dart';
-import 'package:flutter_todo_sample/entities/Task.dart';
+import 'package:flutter_todo_sample/entities/task.dart';
 import 'package:hooks_riverpod/all.dart';
 
 final tasksProvider = StateNotifierProvider((ref) => TasksController());
 
 class TasksController extends StateNotifier<TasksState> {
   TasksController() : super(TasksState(tasks: [])) {
-
-    final isProduction = bool.fromEnvironment('dart.vm.product');
-    if (!isProduction) {
-      FirebaseFirestore.instance.settings = Settings(
-          host: 'localhost:8080', sslEnabled: false, persistenceEnabled: false);
-    }
     loadTask();
   }
   final tasksRef = FirebaseFirestore.instance.collection('tasks');
