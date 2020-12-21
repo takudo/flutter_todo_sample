@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_todo_sample/entities/app_user.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 part 'login_state.freezed.dart';
@@ -8,7 +9,8 @@ abstract class LoginState with _$LoginState{
 
   LoginState._(); //private constructor
   factory LoginState({
-    GoogleSignInAccount googleAccount,
+    AppUser appUser,
+    User googleAccount,
     User facebookAccount,
     @Default(false) bool initialized
   }) = _LoginState;

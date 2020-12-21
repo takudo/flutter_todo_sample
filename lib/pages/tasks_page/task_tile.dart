@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_todo_sample/entities/Task.dart';
+import 'package:flutter_todo_sample/entities/task.dart';
 import 'package:flutter_todo_sample/pages/tasks_page/task_edit_page.dart';
 
 class TaskTile extends HookWidget {

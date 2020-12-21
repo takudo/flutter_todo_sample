@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -10,6 +12,15 @@ import 'package:loader_overlay/loader_overlay.dart';
 import 'controllers/login_controller/login_controller.dart';
 
 void main() async {
+
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
+  final isProduction = bool.fromEnvironment('dart.vm.product');
+  if (!isProduction) {
+    FirebaseFirestore.instance.settings = Settings(
+        host: 'localhost:8080', sslEnabled: false, persistenceEnabled: false);
+  }
 
   runApp(
     const ProviderScope(

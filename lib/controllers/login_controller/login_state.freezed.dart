@@ -15,10 +15,12 @@ class _$LoginStateTearOff {
 
 // ignore: unused_element
   _LoginState call(
-      {GoogleSignInAccount googleAccount,
+      {AppUser appUser,
+      User googleAccount,
       User facebookAccount,
       bool initialized = false}) {
     return _LoginState(
+      appUser: appUser,
       googleAccount: googleAccount,
       facebookAccount: facebookAccount,
       initialized: initialized,
@@ -32,7 +34,8 @@ const $LoginState = _$LoginStateTearOff();
 
 /// @nodoc
 mixin _$LoginState {
-  GoogleSignInAccount get googleAccount;
+  AppUser get appUser;
+  User get googleAccount;
   User get facebookAccount;
   bool get initialized;
 
@@ -45,7 +48,8 @@ abstract class $LoginStateCopyWith<$Res> {
           LoginState value, $Res Function(LoginState) then) =
       _$LoginStateCopyWithImpl<$Res>;
   $Res call(
-      {GoogleSignInAccount googleAccount,
+      {AppUser appUser,
+      User googleAccount,
       User facebookAccount,
       bool initialized});
 }
@@ -60,14 +64,16 @@ class _$LoginStateCopyWithImpl<$Res> implements $LoginStateCopyWith<$Res> {
 
   @override
   $Res call({
+    Object appUser = freezed,
     Object googleAccount = freezed,
     Object facebookAccount = freezed,
     Object initialized = freezed,
   }) {
     return _then(_value.copyWith(
+      appUser: appUser == freezed ? _value.appUser : appUser as AppUser,
       googleAccount: googleAccount == freezed
           ? _value.googleAccount
-          : googleAccount as GoogleSignInAccount,
+          : googleAccount as User,
       facebookAccount: facebookAccount == freezed
           ? _value.facebookAccount
           : facebookAccount as User,
@@ -84,7 +90,8 @@ abstract class _$LoginStateCopyWith<$Res> implements $LoginStateCopyWith<$Res> {
       __$LoginStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {GoogleSignInAccount googleAccount,
+      {AppUser appUser,
+      User googleAccount,
       User facebookAccount,
       bool initialized});
 }
@@ -101,14 +108,16 @@ class __$LoginStateCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object appUser = freezed,
     Object googleAccount = freezed,
     Object facebookAccount = freezed,
     Object initialized = freezed,
   }) {
     return _then(_LoginState(
+      appUser: appUser == freezed ? _value.appUser : appUser as AppUser,
       googleAccount: googleAccount == freezed
           ? _value.googleAccount
-          : googleAccount as GoogleSignInAccount,
+          : googleAccount as User,
       facebookAccount: facebookAccount == freezed
           ? _value.facebookAccount
           : facebookAccount as User,
@@ -121,12 +130,17 @@ class __$LoginStateCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
 /// @nodoc
 class _$_LoginState extends _LoginState {
   _$_LoginState(
-      {this.googleAccount, this.facebookAccount, this.initialized = false})
+      {this.appUser,
+      this.googleAccount,
+      this.facebookAccount,
+      this.initialized = false})
       : assert(initialized != null),
         super._();
 
   @override
-  final GoogleSignInAccount googleAccount;
+  final AppUser appUser;
+  @override
+  final User googleAccount;
   @override
   final User facebookAccount;
   @JsonKey(defaultValue: false)
@@ -135,13 +149,16 @@ class _$_LoginState extends _LoginState {
 
   @override
   String toString() {
-    return 'LoginState(googleAccount: $googleAccount, facebookAccount: $facebookAccount, initialized: $initialized)';
+    return 'LoginState(appUser: $appUser, googleAccount: $googleAccount, facebookAccount: $facebookAccount, initialized: $initialized)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _LoginState &&
+            (identical(other.appUser, appUser) ||
+                const DeepCollectionEquality()
+                    .equals(other.appUser, appUser)) &&
             (identical(other.googleAccount, googleAccount) ||
                 const DeepCollectionEquality()
                     .equals(other.googleAccount, googleAccount)) &&
@@ -156,6 +173,7 @@ class _$_LoginState extends _LoginState {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(appUser) ^
       const DeepCollectionEquality().hash(googleAccount) ^
       const DeepCollectionEquality().hash(facebookAccount) ^
       const DeepCollectionEquality().hash(initialized);
@@ -168,12 +186,15 @@ class _$_LoginState extends _LoginState {
 abstract class _LoginState extends LoginState {
   _LoginState._() : super._();
   factory _LoginState(
-      {GoogleSignInAccount googleAccount,
+      {AppUser appUser,
+      User googleAccount,
       User facebookAccount,
       bool initialized}) = _$_LoginState;
 
   @override
-  GoogleSignInAccount get googleAccount;
+  AppUser get appUser;
+  @override
+  User get googleAccount;
   @override
   User get facebookAccount;
   @override
