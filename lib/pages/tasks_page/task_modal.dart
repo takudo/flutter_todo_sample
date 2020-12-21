@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_todo_sample/controllers/login_controller/login_controller.dart';
 import 'package:flutter_todo_sample/controllers/tasks_controller/tasks_controller.dart';
+import 'package:flutter_todo_sample/entities/app_user.dart';
 import 'package:hooks_riverpod/all.dart';
 
 class TaskModal extends HookWidget {
@@ -10,6 +12,9 @@ class TaskModal extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = useProvider(
+      loginProvider.state.select((s) => s.appUser)
+    );
 
     return Material(child:
       Container(
@@ -37,7 +42,7 @@ class TaskModal extends HookWidget {
                   RaisedButton(
                     child: Text('保存'),
                     onPressed: () async {
-                      _onSavePressed(context, _titleTextController.text);
+                      _onSavePressed(context, user, _titleTextController.text);
                       Navigator.of(context).pop();
                     },
                   )
@@ -50,8 +55,8 @@ class TaskModal extends HookWidget {
     );
   }
 
-  _onSavePressed(BuildContext context, String taskTitle) {
-    context.read(tasksProvider).addTask(taskTitle);
+  _onSavePressed(BuildContext context, AppUser user, String taskTitle) {
+    context.read(tasksProvider).addTask(user, taskTitle);
   }
 
 }

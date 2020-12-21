@@ -165,7 +165,6 @@ class LoginController extends StateNotifier<LoginState> {
     return currentUser;
   }
 
-
   facebookLogin() async {
 
     // Facebookの認証画面が開く
