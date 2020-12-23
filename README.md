@@ -12,7 +12,7 @@ flutter を用いて、以下の実装を試したサンプルアプリケーシ
 - [x] タスクの新規追加
 - [x] タスクの更新
 - [x] タスクの削除
-- [ ] タスクのステータス変更（完了/未完了）
+- [x] タスクのステータス変更（完了/未完了）
 - [ ] タスクの並び替え
 
 
@@ -31,24 +31,3 @@ flutter を用いて、以下の実装を試したサンプルアプリケーシ
     ![auth_provider](./README/firebase_setting_auth_providers.jpg)
   - マルチログインの有効化
     ![auth_multi_login](./README/firebase_setting_auth_multi_account.jpg)
-
-
-    
-
-### Firestore 
-
-- ローカル開発時にエミュレータを利用する場合は以下を実施します。
-
-1. firebase CLI のインストール
-2. firebase プロジェクトとしての初期化
-
-```shell
-$ cd /path/to/thisproject
-$ fireabase init
-```
-
-3. ローカルでのエミュレータ起動
-
-```shell
-$ firebase emulators:start
-```

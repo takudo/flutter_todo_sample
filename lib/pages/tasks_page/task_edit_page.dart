@@ -30,7 +30,7 @@ class TaskEditPage extends HookWidget {
       if(!_titleTextFocusNode.hasFocus && //フォーカスが外れた
           _titleTextController.text != taskState.title // タイトルの内容が変わっている
       ){
-        context.read(tasksProvider).updateTask(user, Task(id: task.id, title: _titleTextController.text));
+        context.read(tasksProvider).updateTask(user, task.copyWith(title: _titleTextController.text));
       }
     });
 
