@@ -49,6 +49,9 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
+  # リストをスワイプしてメニュー表示
+  flutter_slidable:
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -16,11 +16,12 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
-  final isProduction = bool.fromEnvironment('dart.vm.product');
-  if (!isProduction) {
-    FirebaseFirestore.instance.settings = Settings(
-        host: 'localhost:8080', sslEnabled: false, persistenceEnabled: false);
-  }
+  // for Use local Firebase Emulator
+  // final isProduction = bool.fromEnvironment('dart.vm.product');
+  // if (!isProduction) {
+  //   FirebaseFirestore.instance.settings = Settings(
+  //       host: 'localhost:8080', sslEnabled: false, persistenceEnabled: false);
+  // }
 
   runApp(
     const ProviderScope(
