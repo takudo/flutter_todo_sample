@@ -15,7 +15,7 @@ class TasksController extends StateNotifier<TasksState> {
 
   loadTask(AppUser user) async {
     final result = await _tasksRef(user).get();
-    final tasks = result.docs.map((d) => Task(id: d.id, title: d.get('title'))).toList();
+    final tasks = result.docs.map((d) => Task.fromFirestore(d)).toList();
 
     if(!listEquals(tasks, state.tasks)) {
       state = state.copyWith(tasks: tasks);
@@ -29,7 +29,7 @@ class TasksController extends StateNotifier<TasksState> {
 
   updateTask(AppUser user, Task task) async {
     final taskRef = _tasksRef(user).doc(task.id);
-    await taskRef.update({'title': task.title});
+    await taskRef.update({'title': task.title, 'isCompleted': task.isCompleted});
     loadTask(user);
   }
 

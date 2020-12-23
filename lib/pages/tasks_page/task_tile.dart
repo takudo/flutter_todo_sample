@@ -36,13 +36,22 @@ class TaskTile extends HookWidget {
             onTap: () {
               context.read(tasksProvider).deleteTask(user, task);
               Scaffold.of(context)
-                  .showSnackBar(SnackBar(content: Text("削除しました")));
+                  .showSnackBar(SnackBar(content: Text("タスクを削除しました")));
             },
           ),
         ],
         child:
           ListTile(
-            leading: Icon(Icons.radio_button_off),
+            leading: GestureDetector(
+              onTap: () {
+                context.read(tasksProvider).updateTask(user, task.copyWith(isCompleted: !task.isCompleted));
+                if(!task.isCompleted) {
+                  Scaffold.of(context)
+                      .showSnackBar(SnackBar(content: Text("タスクを完了しました")));
+                }
+              },
+              child: task.isCompleted ? Icon(Icons.radio_button_on) : Icon(Icons.radio_button_off)
+            ),
             title: Text(
               task.title,
               style: TextStyle(
