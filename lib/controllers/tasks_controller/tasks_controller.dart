@@ -32,4 +32,10 @@ class TasksController extends StateNotifier<TasksState> {
     await taskRef.update({'title': task.title});
     loadTask(user);
   }
+
+  deleteTask(AppUser user, Task task) async {
+    final taskRef = _tasksRef(user).doc(task.id);
+    await taskRef.delete();
+    loadTask(user);
+  }
 }

@@ -12,7 +12,7 @@ class AppUser {
     this.facebookAccountId = null,
   });
 
-  static fromFirestore(QueryDocumentSnapshot snapshot) {
+  static fromFirestore(DocumentSnapshot snapshot) {
     final map = snapshot.data();
     return AppUser(
         id: snapshot.id,
